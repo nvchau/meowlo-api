@@ -26,3 +26,8 @@ $ yarn | npm start
 * eslint
 #### Run
 * Run: npm run eslint
+## Database
+#### MongoDB
+* Use `mongoose npm` (MongoDB ORM - third-party libraries) or `mongodb npm` (MongoDB NodeJS Driver - released by mongodb itself)
+* `mongoose npm` is easier to use, but performance lags behind `mongodb npm`
+* I will choose `mongodb npm` - this is MongoDB native driver

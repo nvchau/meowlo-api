@@ -13,3 +13,6 @@ app.get('/', (req, res, next) => {
 app.listen(port, hostname, () => {
   console.log(`Server running at ${hostname}:${port}`)
 })
+
+// https://www.youtube.com/watch?v=MBVxId66pgE&list=PLP6tw4Zpj-RKdGMqhYpfdl94cd4fu-RFg&index=13
+// 11:20
