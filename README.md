@@ -16,7 +16,11 @@ $ yarn | npm start
 
 # Description
 ## Absolute import (say goodbye relative imports)
-* Use compiler
+* Use compiler `babeljs` and library `babel-plugin-module-resolver`
+* Read more here:
+  - https://trungquandev.com/cau-hinh-babel-cho-mot-du-an-nodejs-thuan-javascript/
+  - https://medium.com/weekly-webtips/say-good-bye-relative-imports-in-nodejs-projects-65513bcdae6c
+
 ## Eslint
 #### Libraries
 * eslint
