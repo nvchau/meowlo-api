@@ -34,3 +34,6 @@ $ yarn | npm start
 * I will choose `mongodb npm` - this is MongoDB native driver
 #### Choose MongoDB Clusters
 * Use `mongodb clusters free for dev`
+#### Schema for MongoDB
+* Use `joi npm` to `declare Schema` and `validate` input data
+* Also can use `express-validator` to validate input data, but I only use one
