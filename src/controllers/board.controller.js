@@ -3,7 +3,7 @@ import { HttpStatusCode } from '*/utilities/constants'
 
 const createNew = async (req, res) => {
   try {
-    const result = await BoardService.createNew(req.body)
+    const result = await BoardService.createNew({ data: req.body })
 
     res.status(HttpStatusCode.CREATED).json(result)
   } catch (error) {

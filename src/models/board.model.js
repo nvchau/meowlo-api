@@ -1,10 +1,11 @@
 import Joi from 'joi'
+import { ObjectId } from 'mongodb'
 import { getDB } from '*/config/mongodb'
 
 // Define Board collection
 const boardCollectionName = 'boards'
 const boardCollectionSchema = Joi.object({
-  title: Joi.string().min(3).max(50).required(),
+  title: Joi.string().min(2).max(50).required().trim(),
   columnOrder: Joi.array().items(Joi.string()).default([]),
   createdAt: Joi.date().timestamp().default(Date.now()),
   updatedAt: Joi.date().timestamp().default(null),
@@ -14,7 +15,8 @@ const boardCollectionSchema = Joi.object({
 const validateSchema = async (data) => {
   return await boardCollectionSchema.validateAsync(data, { abortEarly: false })
 }
-const createNew = async (data) => {
+
+const createNew = async ({ data }) => {
   try {
     const value = await validateSchema(data)
     const result = await getDB().collection(boardCollectionName).insertOne(value)
@@ -25,9 +27,9 @@ const createNew = async (data) => {
   }
 }
 
-const findOneById = async (id) => {
+const findOneById = async ({ id }) => {
   try {
-    const result = await getDB().collection(boardCollectionName).findOne({ _id: id })
+    const result = await getDB().collection(boardCollectionName).findOne({ _id: ObjectId(id) })
 
     return result
   } catch (error) {
@@ -35,4 +37,7 @@ const findOneById = async (id) => {
   }
 }
 
-export const BoardModel = { createNew, findOneById }
+export const BoardModel = {
+  createNew,
+  findOneById
+}
