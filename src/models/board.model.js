@@ -21,8 +21,18 @@ const createNew = async (data) => {
 
     return result
   } catch (error) {
-    console.log(error)
+    throw new Error(error)
   }
 }
 
-export const BoardModel = { createNew }
+const findOneById = async (id) => {
+  try {
+    const result = await getDB().collection(boardCollectionName).findOne({ _id: id })
+
+    return result
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+export const BoardModel = { createNew, findOneById }
