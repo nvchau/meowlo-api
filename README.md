@@ -38,5 +38,10 @@ $ yarn | npm start
 #### Schema for MongoDB
 * Use `joi npm` to `declare Schema` and `validate` input data
 * Also can use `express-validator` to validate input data, but I only use one
+* Use `aggregate mongodb` aggregate data from collections to return desired results (https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/), and `lookup mongodb` - so that the query is similar to SQL's `left outer join` (https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/)
+#### About the `_id` field problem
+* In mongodb, _id always has the data type of `ObjectId`, but when saving it as a string, there will be an error when querying, so there are 2 solutions:
+  - Convert `_id` to string when hexadecimal (use `addFields` of mongodb)
+  - When saving the database (specifically when creating new `column` and new `card` record) it is necessary to save the correct `ObjectId`, no need to convert when querying anymore (I choose this way)
 #### Logic about deleting records
 * Use `soft delete`, ie do not delete this record completely from the database, but update the field `_destroy` from `false` to `true`
