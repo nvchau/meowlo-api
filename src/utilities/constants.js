@@ -2,7 +2,7 @@ export const HttpStatusCode = {
   OK: 200,
   CREATED: 201,
   BAD_REQUEST: 400,
-  UNAUTHERIZER: 401,
+  UNAUTHORIZED: 401,
   NO_FOUND: 404,
   INTERNAL_SERVER: 500
 }

@@ -17,6 +17,7 @@ $ yarn | npm start
 # Description
 ## Absolute import (say goodbye relative imports)
 * Use compiler `babeljs` and library `babel-plugin-module-resolver`
+* `*/...`: go from root directory
 * Read more here:
   - https://trungquandev.com/cau-hinh-babel-cho-mot-du-an-nodejs-thuan-javascript/
   - https://medium.com/weekly-webtips/say-good-bye-relative-imports-in-nodejs-projects-65513bcdae6c
@@ -37,3 +38,5 @@ $ yarn | npm start
 #### Schema for MongoDB
 * Use `joi npm` to `declare Schema` and `validate` input data
 * Also can use `express-validator` to validate input data, but I only use one
+#### Logic about deleting records
+* Use `soft delete`, ie do not delete this record completely from the database, but update the field `_destroy` from `false` to `true`

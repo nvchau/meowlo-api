@@ -1,9 +1,9 @@
 import { BoardModel } from '*/models/board.model'
 
-const createNew = async (data) => {
+const createNew = async ({ data }) => {
   try {
-    const createdBoard = await BoardModel.createNew(data)
-    const getNewBoard = await BoardModel.findOneById(createdBoard.insertedId)
+    const createdBoard = await BoardModel.createNew({ data })
+    const getNewBoard = await BoardModel.findOneById({ id: createdBoard.insertedId })
 
     return getNewBoard
   } catch (error) {
