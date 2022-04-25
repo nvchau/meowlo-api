@@ -17,7 +17,8 @@ const cardCollectionSchema = Joi.object({
 const validateSchema = async (data) => {
   return await cardCollectionSchema.validateAsync(data, { abortEarly: false })
 }
-const createNew = async (data) => {
+
+const createNew = async ({ data }) => {
   try {
     const value = await validateSchema(data)
     const result = await getDB().collection(cardCollectionName).insertOne(value)
@@ -38,23 +39,7 @@ const findOneById = async ({ id }) => {
   }
 }
 
-const update = async ({ id, data }) => {
-  try {
-    const result = await getDB().collection(cardCollectionName).findOneAndUpdate(
-      { _id: ObjectId(id) },
-      { $set: data },
-      { returnDocument : 'after' },
-      { returnOriginal: false }
-    )
-
-    return result.value
-  } catch (error) {
-    throw new Error(error)
-  }
-}
-
 export const CardModel = {
   createNew,
-  findOneById,
-  update
+  findOneById
 }

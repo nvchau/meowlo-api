@@ -17,27 +17,6 @@ const createNew = async (req, res, next) => {
   }
 }
 
-const update = async (req, res, next) => {
-  const condition = Joi.object({
-    title: Joi.string().required().min(2).max(50).trim()
-  })
-  try {
-    await condition.validateAsync(req.body, {
-      abortEarly: false,
-      allowUnknown: true
-    })
-    next()
-  } catch (error) {
-    res.status(HttpStatusCode.BAD_REQUEST).json({
-      errors: new Error(error).message
-    })
-  }
-}
-
 export const CardValidation = {
-  createNew,
-  update
+  createNew
 }
-
-// https://www.youtube.com/watch?v=_ITT51iDl08&list=PLP6tw4Zpj-RKdGMqhYpfdl94cd4fu-RFg&index=17
-// 12:05
