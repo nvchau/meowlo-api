@@ -63,9 +63,13 @@ const findOneById = async ({ id }) => {
 
 const update = async ({ id, data }) => {
   try {
+    const updateData = {
+      ...data,
+      boardId: ObjectId(data.boardId)
+    }
     const result = await getDB().collection(columnCollectionName).findOneAndUpdate(
       { _id: ObjectId(id) },
-      { $set: data },
+      { $set: updateData },
       { returnDocument : 'after' }, // return record after update
       { returnOriginal: false } // false: return record after update
     )
