@@ -61,7 +61,10 @@ const findOneById = async ({ id }) => {
 const getFullBoard = async ({ id }) => {
   try {
     const result = await getDB().collection(boardCollectionName).aggregate([
-      { $match: { _id: ObjectId(id) } },
+      { $match: {
+        _id: ObjectId(id),
+        _destroy: false
+      } },
       // {
       //   $addFields: {
       //     _id: { $toString: '$_id' } // overwrite the old _id field with the new _id field that has been converted to a string
