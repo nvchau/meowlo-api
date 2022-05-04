@@ -34,6 +34,25 @@ const createNew = async ({ data }) => {
   }
 }
 
+const update = async ({ id, data }) => {
+  try {
+    const updateData = { ...data }
+    if (data.boardId) updateData.boardId = ObjectId(data.boardId)
+    if (data.columnId) updateData.columnId = ObjectId(data.columnId)
+
+    const result = await getDB().collection(cardCollectionName).findOneAndUpdate(
+      { _id: ObjectId(id) },
+      { $set: updateData },
+      { returnDocument : 'after' },
+      { returnOriginal: false }
+    )
+
+    return result.value
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 const findOneById = async ({ id }) => {
   try {
     const result = await getDB().collection(cardCollectionName).findOne({ _id: ObjectId(id) })
@@ -65,5 +84,6 @@ export const CardModel = {
   cardCollectionName,
   createNew,
   findOneById,
-  deleteMany
+  deleteMany,
+  update
 }
