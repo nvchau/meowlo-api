@@ -29,6 +29,22 @@ const createNew = async ({ data }) => {
   }
 }
 
+const update = async ({ id, data }) => {
+  try {
+    const updateData = { ...data }
+    const result = await getDB().collection(boardCollectionName).findOneAndUpdate(
+      { _id: ObjectId(id) },
+      { $set: updateData },
+      { returnDocument : 'after' },
+      { returnOriginal: false }
+    )
+
+    return result.value
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 /**
  * @param {string} boardId
  * @param {string} columnId
@@ -95,5 +111,6 @@ export const BoardModel = {
   createNew,
   pushColumnOrder,
   findOneById,
-  getFullBoard
+  getFullBoard,
+  update
 }
